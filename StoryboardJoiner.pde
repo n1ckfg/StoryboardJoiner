@@ -26,7 +26,11 @@ void setup() {
   Settings settings = new Settings("settings.txt");
   countFrames();
   numImages = photoArrayNames.size();
-  numPages = (numImages/imagesPerPage)+1;
+  if(numImages % imagesPerPage==0){
+    numPages = (numImages/imagesPerPage)+1;
+  }else{
+    numPages = (numImages/imagesPerPage)+2;
+  }
   imgPage = loadImage("images/" + storyboardFile);
   size(imgPage.width, imgPage.height);
   imgPanel = new PImage[imagesPerPage];
@@ -41,8 +45,10 @@ void draw() {
     text(headerText + "  " + pageCounter + " / " + numPages,headFontSize,headFontSize);
   if (imageCounter<numImages&&pageCounter<numPages+1) {
     for (int i=0;i<imgPanel.length;i++) {
-      imgPanel[i] = loadImage((String)photoArrayNames.get(imageCounter));
-      image(imgPanel[i], coordsX[i], coordsY[i]);
+      try{
+        imgPanel[i] = loadImage((String)photoArrayNames.get(imageCounter));
+        image(imgPanel[i], coordsX[i], coordsY[i]);
+      }catch(Exception e){ }
       textFont(numFont,numFontSize);
       text((1+imageCounter)+".", coordsX[i], coordsY[i]-(numFontSize/3));
       imageCounter++;
