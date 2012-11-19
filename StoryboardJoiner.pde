@@ -15,6 +15,8 @@ String storyboardFile = "16-9 Storyboard.png";
 int numPages,numImages;
 int imageCounter = 0;
 int pageCounter = 1;
+int spanelW = 1024;
+int spanelH = 576;
 String panelFileName = "shot";
 String panelFileType = "png";
 String pageFileName = "page";
@@ -47,7 +49,7 @@ void draw() {
     for (int i=0;i<imgPanel.length;i++) {
       try{
         imgPanel[i] = loadImage((String)photoArrayNames.get(imageCounter));
-        image(imgPanel[i], coordsX[i], coordsY[i]);
+        image(imgPanel[i], coordsX[i], coordsY[i],spanelW,spanelH);
       }catch(Exception e){ }
       textFont(numFont,numFontSize);
       text((1+imageCounter)+".", coordsX[i], coordsY[i]-(numFontSize/3));

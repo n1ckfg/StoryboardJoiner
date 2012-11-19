@@ -1,6 +1,12 @@
 Storyboard File
 16-9 Storyboard.png
 
+Storyboard Panel Width
+1024
+
+Storyboard Panel Height
+576
+
 Header Text
 Foo
 

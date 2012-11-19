@@ -8,6 +8,8 @@ class Settings {
       settings.load(_s);
       for (int i=0;i<settings.data.length;i++) {
         if (settings.data[i].equals("Storyboard File")) storyboardFile = setString(settings.data[i+1]);
+        if (settings.data[i].equals("Storyboard Panel Width")) spanelW = setInt(settings.data[i+1]);
+        if (settings.data[i].equals("Storyboard Panel Height")) spanelH = setInt(settings.data[i+1]);
         if (settings.data[i].equals("Header Text")) headerText = setString(settings.data[i+1]);
         if (settings.data[i].equals("Save in File Format")) pageFileType = setString(settings.data[i+1]);
        }
