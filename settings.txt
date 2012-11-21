@@ -8,7 +8,10 @@ Storyboard Panel Height
 576
 
 Header Text
-Foo
+Untitled
 
 Save in File Format
 png
+
+Zero Padding
+true

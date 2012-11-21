@@ -12,6 +12,7 @@ class Settings {
         if (settings.data[i].equals("Storyboard Panel Height")) spanelH = setInt(settings.data[i+1]);
         if (settings.data[i].equals("Header Text")) headerText = setString(settings.data[i+1]);
         if (settings.data[i].equals("Save in File Format")) pageFileType = setString(settings.data[i+1]);
+        if (settings.data[i].equals("Zero Padding")) doZeroPadding = setBoolean(settings.data[i+1]);
        }
     } 
     catch(Exception e) {

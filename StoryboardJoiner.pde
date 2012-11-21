@@ -6,6 +6,7 @@ PImage[] imgPanel;
 ArrayList photoArrayNames;
 float[] coordsX = { 15, 1210, 15, 1210, 15, 1210 };
 float[] coordsY = { 228, 228, 1212, 1212, 2196, 2196 };
+boolean doZeroPadding = true;
 //********************************
 int imagesPerPage = 6;
 boolean saveFiles = true;
@@ -22,7 +23,7 @@ String panelFileType = "png";
 String pageFileName = "page";
 String pageFileType = "png";
 String saveDir = "render";
-
+String resourcesDir = "resources";
 
 void setup() {
   Settings settings = new Settings("settings.txt");
@@ -33,7 +34,7 @@ void setup() {
   }else{
     numPages = (numImages/imagesPerPage)+2;
   }
-  imgPage = loadImage("images/" + storyboardFile);
+  imgPage = loadImage(resourcesDir + "/" + storyboardFile);
   size(imgPage.width, imgPage.height);
   imgPanel = new PImage[imagesPerPage];
   numFont = createFont("Arial",numFontSize);
@@ -44,7 +45,7 @@ void setup() {
 void draw() {
     image(imgPage, 0, 0);
     textFont(headFont,headFontSize);
-    text(headerText + "  " + pageCounter + " / " + numPages,headFontSize,headFontSize);
+    text(headerText + "  " + pageCounter + " / " + (numPages-1),headFontSize,headFontSize);
   if (imageCounter<numImages&&pageCounter<numPages+1) {
     for (int i=0;i<imgPanel.length;i++) {
       try{
@@ -56,7 +57,11 @@ void draw() {
       imageCounter++;
     }
     if(saveFiles){
-      saveFrame(saveDir + "/" + pageFileName+"_"+pageCounter+"."+pageFileType);
+      if(!doZeroPadding){
+        saveFrame(saveDir + "/" + pageFileName+"_"+pageCounter+"."+pageFileType);
+      }else{
+        saveFrame(saveDir + "/" + pageFileName+"_"+zeroPadding(pageCounter,numPages)+"."+pageFileType);
+      }
     }
     pageCounter++;
     if(pageCounter>=numPages) exit();
@@ -78,3 +83,8 @@ void countFrames() {
         }
     }catch(Exception e){ }
   }
+  
+  String zeroPadding(int _val, int _maxVal){
+  String q = ""+_maxVal;
+  return nf(_val,q.length());
+}
